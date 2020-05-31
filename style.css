@@ -29,42 +29,51 @@
     height: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(-90deg);
     pointer-events: none;
 }
 
 .time-display{
     position: absolute;
-    bottom: 10%;
+    bottom: -10%;
     color: white;
-    font-size: 50px;
+    font-size: 100px;    
 }
-
 
 video{
     position: fixed;
     top: 0%;
     left: 0%;
     width: 100%;
+    object-fit: cover;
     z-index: -1;
+    height: 800px;
 }
 
 .time-select button,
 .sound-picker button{
-    columns: white;
+    color: white;
     width: 30%;
     height: 10%;
-    background: none;
+    background: rgba(255, 255, 255, 0.329);
     border: 2px solid white;
     cursor: pointer;
     border-radius: 5px;
     font-size: 20px;
     transition: all 0.5s ease;
+    transform: scale(1);
+}
+
+@media (max-width:1025px) {
+    .time-select button{
+        width: 50%;
+    }
 }
 
 .time-select button:hover{
     color: black;
     background: white;
+    transform: scale(1.1);
 }
 
 .sound-picker button{
@@ -83,6 +92,33 @@ video{
     background: #a14f49;
 }
 
+.sound-picker button:nth-child(1):hover{
+    background: rgb(23, 111, 212);
+}
+
+.sound-picker button:nth-child(2):hover{
+    background: #d83226;
+}
+
 .sound-picker button img{
     height: 100%;
 }
+
+@media (max-width: 624px){
+    .time-select button{
+        width: 70%;
+    }
+
+    .time-display{
+        font-size: 60px;
+    }
+
+    .sound-picker button{
+        border: none;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        padding: 30px;
+    }
+}
+
