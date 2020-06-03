@@ -5,10 +5,12 @@ const app = () => {
     const play = document.querySelector('.play')
     const outline = document.querySelector('.moving-outline circle')
     const video = document.querySelector('.vid-container video')
+    
     //sounds
-    const counds= document.querySelectorAll('.sound-picker button');
+    const sounds= document.querySelectorAll('.sound-picker button');
     //Time Display
     const timeDisplay = document.querySelector('.time-display');
+    const timeSelect = document.querySelectorAll('.time-select button');
     //Get the length of the outline
     const outlineLength = outline.getTotalLength();
     //Duration
@@ -21,6 +23,14 @@ const app = () => {
     //Play sounds
     play.addEventListener('click', () => {
        checkPlaying(song);
+    })
+
+    //Select sound
+    timeSelect.forEach(option => {
+        option.addEventListener('click', function() {
+            fakeDuration = this.getAttribute('data-time');
+            timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}: ${Math.floor(fakeDuration % 60)}`
+        })
     })
 
     //Create a function to stop and play sounds and change icon
@@ -50,7 +60,14 @@ const app = () => {
 
         //Animate the text
         timeDisplay.textContent = `${minutes}: ${seconds}`;
-    }
+    
+        if(currentTime >= fakeDuration) {
+            song.pause();
+            song.currentTime = 0;
+            play.src = "./svg/play.svg";
+            video.pause();
+        }
+    };
 
 
 }
