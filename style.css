@@ -6,7 +6,7 @@
 
 .app{
     display: flex;
-    height: 100vw;
+    height: 100vh;
 }
 
 .time-select,
@@ -72,7 +72,7 @@ video{
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    padding: 30px;g
+    padding: 30px;
 }
 
 .sound-picker button:nth-child(1){

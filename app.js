@@ -28,12 +28,28 @@ const app = () => {
         if(song.paused){
             song.play();
             video.play();
-            play.src = '.svg/pause.svg'
+            play.src = './svg/pause.svg';
         } else {
             song.pause();
             video.pause();
-            play.src = '.svg/play.svg'
+            play.src = './svg/play.svg';
         }
+    };
+
+    //Animate the circle and the time
+    song.ontimeupdate = () => {
+        //Get the time
+        let currentTime = song.currentTime;
+        let elapsed = fakeDuration - currentTime;
+        let seconds = Math.floor(elapsed % 60);
+        let minutes = Math.floor(elapsed / 60);
+
+        //Animate the circle
+        let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+        outline.style.strokeDashoffset = progress;
+
+        //Animate the text
+        timeDisplay.textContent = `${minutes}: ${seconds}`;
     }
 
 
